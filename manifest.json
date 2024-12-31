@@ -1,0 +1,17 @@
+{
+  "name": "meshify",
+  "id": "1455653320022555478",
+  "api": "1.0.0",
+  "main": "out/index.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "documentAccess": "dynamic-page",
+  "editorType": [
+    "figma"
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}
