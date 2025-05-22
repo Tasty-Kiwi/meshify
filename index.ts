@@ -22,9 +22,16 @@ function convert(workingNode: VectorNode): Mesh {
     segments: [],
   }
 
+  if (!workingNode.vectorNetwork) {
+    figma.notify("⚠️ One of the selected nodes does not have vector data")
+    figma.closePlugin()
+    return mesh
+  }
+
   workingNode.vectorNetwork.vertices.forEach((vertex) => {
     console.log(workingNode.height, workingNode.y)
-    mesh.vertexes.push([workingNode.x + vertex.x, workingNode.y + (workingNode.height - vertex.y)])
+    // Hopefully coordinate adjustment works
+    mesh.vertexes.push([workingNode.x + vertex.x, -(workingNode.y + vertex.y)])
   })
 
   if (
