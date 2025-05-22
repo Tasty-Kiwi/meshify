@@ -23,7 +23,7 @@ function convert(workingNode: VectorNode): Mesh {
   }
 
   if (!workingNode.vectorNetwork) {
-    figma.notify("⚠️ One of the selected nodes does not have vector data")
+    figma.notify("⚠️ Vector data not found")
     figma.closePlugin()
     return mesh
   }
@@ -32,6 +32,8 @@ function convert(workingNode: VectorNode): Mesh {
     console.log(workingNode.height, workingNode.y)
     // Hopefully coordinate adjustment works
     mesh.vertexes.push([workingNode.x + vertex.x, -(workingNode.y + vertex.y)])
+    // For testing purposes
+    // mesh.vertexes.push([vertex.x, vertex.y])
   })
 
   if (
@@ -111,11 +113,13 @@ if (nodes.length === 0) {
 } else {
   for (const node of nodes) {
     // Check if the node is a vector node
-    if (nodes[0].type === "VECTOR") {
-      const mesh = convert(node as VectorNode)
+    if (node.type === "VECTOR") {
+      let vectorNode = node as VectorNode
+      vectorNode = figma.flatten([vectorNode])
+      const mesh = convert(vectorNode)
       meshes.push(mesh)
     } else {
-      figma.notify("⚠️ Please select a vector node")
+      figma.notify("⚠️ Please select all vector nodes")
       figma.closePlugin()
     }
   }
