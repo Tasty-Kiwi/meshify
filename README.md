@@ -10,6 +10,10 @@ A Figma plugin for converting Figma's vector objects into PPL meshes.
 
 Other limitations will be removed before the full release.
 
+## Quirks
+
+- Y axis is inverted on export. Figma's Y axis goes down, whereas PewPew Live's goes up. This was done so that the meshes are visually accurate in both places.
+
 ## Development build
 
 ```sh
