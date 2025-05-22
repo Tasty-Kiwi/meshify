@@ -119,7 +119,7 @@ if (nodes.length === 0) {
       const mesh = convert(vectorNode)
       meshes.push(mesh)
     } else {
-      figma.notify("⚠️ Please select all vector nodes")
+      figma.notify("⚠️ Please select all vector nodes (Try flattening)")
       figma.closePlugin()
     }
   }
