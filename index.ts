@@ -134,18 +134,32 @@ if (nodes.length === 0) {
   figma.showUI(
     `
       <style>
-        .btn {
-          color: #ffffff;
-          background-color: #2c2c2c;
+        body {
+          background-color: var(--figma-color-bg);
+          color: var(--figma-color-text);
+          font-family: "Inter", "Arial", "Helvetica", sans-serif;
+        }
+        button {
+          background-color: var(--figma-color-bg-brand);
+          color: var(--figma-color-text-onbrand);
           font-size: 0.875rem;
           padding-top: 0.5rem;
           padding-bottom: 0.5rem;
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-          border-radius: 0.375rem;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          border-radius: 0.25rem;
+          border: none;
           margin-top: auto;
           width: fit-content;
-          margin-top: 0.25rem;
+        }
+        textarea {
+          resize: none;
+          height: 10rem;
+          width: 460px;
+          background-color: var(--figma-color-bg-secondary);
+          color: var(--figma-color-text);
+          font-family: "Cascadia Code", "SF Mono", monospace;
+          margin-bottom: 0.45rem;
         }
       </style>
       <script>
@@ -166,19 +180,21 @@ if (nodes.length === 0) {
           URL.revokeObjectURL(link.href)
         }
       </script>
-      <h1 style="font-family: sans-serif;">Your mesh:</h1>
-      <textarea id="code" readonly style="resize: none; height: 10rem; width: 460px">${luaTable}</textarea>
+      <h1>Meshify</h1>
+      <p>Exported mesh:</p>
+      <textarea id="code" readonly>${luaTable}</textarea>
       <div>
-        <button class="btn" style="margin-top: 0.25rem" onclick="handleCopy()">
+        <button onclick="handleCopy()">
           Copy to clipboard
         </button>
-        <button class="btn" onclick="handleDownload()">Save</button>
+        <button onclick="handleDownload()">Save</button>
       </div>
     `,
     {
       width: 480,
       height: 320,
       title: "Meshify - Mesh output",
+      themeColors: true,
     }
   )
 }
